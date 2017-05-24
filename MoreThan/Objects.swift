@@ -21,3 +21,14 @@ class Month: Object {
     }
     
 }
+
+class Date: Object {
+    
+    dynamic var id: Int = 0
+    dynamic var message: String = ""
+    dynamic var image: String = ""
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+}

@@ -46,6 +46,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         self.collectionView?.dataSource = self
         self.collectionView?.delegate = self
         self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView")
         self.collectionView?.backgroundColor = UIColor.white
         self.view.addSubview(collectionView!)
         
@@ -62,6 +63,15 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         return months.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView", for: indexPath)
+        headerView.addSubview(addHeaderFill(color: UIColor.white))
+        headerView.addSubview(addMonthToHeader(text: months[indexPath.section].month))
+        
+        return headerView
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -76,20 +86,54 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         
         if indexPath.row >= months[indexPath.section].frontEmpty {
             cell.addSubview(addCalendarFill())
-            cell.addSubview(addCalendarFill(color: UIColor.gray, opacity: 0.2))
+            cell.addSubview(addCalendarFill(color: UIColor.white, opacity: 0.5))
+            cell.addSubview(addCalendarDate(text: String(indexPath.row - months[indexPath.section].frontEmpty + 1)))
+            
         } else {
             cell.addSubview(addCalendarFill(color: UIColor.white, opacity: 1.0))
         }
         
         
-        cell.addSubview(addCalendarDate(text: String(indexPath.row - months[indexPath.section].frontEmpty + 1)))
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected \(months[indexPath.section].month), \(indexPath.row - months[indexPath.section].frontEmpty + 1)!")
     }
     
 }
 
 extension CalendarCollectionView {
+    
+    func addMonthToHeader(text: String) -> UILabel {
+        let month = UILabel()
+        month.frame = CGRect(x: 0,
+                            y: 0,
+                            width: self.view.frame.width,
+                            height: itemWidth)
+        month.text = text
+        month.textColor = UIColor.gray
+        month.font = UIFont.boldSystemFont(ofSize: 30.0)
+        month.textAlignment = .center
+        month.layer.shadowColor = UIColor.lightGray.cgColor
+        month.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        month.layer.shadowOpacity = 0.5
+        month.layer.shadowRadius = 0.25
+        
+        return month
+    }
+    
+    func addHeaderFill(color: UIColor) -> UIView {
+        let background = UIView()
+        background.backgroundColor = color
+        background.frame = CGRect(x: 0,
+                                  y: 0,
+                                  width: self.view.frame.width,
+                                  height: itemWidth)
+        
+        return background
+    }
     
     func addCalendarFill(color: UIColor = getRandomColor(), opacity: CGFloat = 1.0) -> UIView {
         let background = UIView()
@@ -112,9 +156,16 @@ extension CalendarCollectionView {
         date.textColor = .white
         date.font = UIFont.boldSystemFont(ofSize: 30.0)
         date.textAlignment = .center
+        date.layer.shadowColor = UIColor.lightGray.cgColor
+        date.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        date.layer.shadowOpacity = 0.5
+        date.layer.shadowRadius = 0.25
+        
         
         return date
     }
+    
+
     
     func reloadView() {
         
