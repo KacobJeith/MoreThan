@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		101626521ED5A278001BEFD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626511ED5A278001BEFD7 /* AppDelegate.swift */; };
+		101626591ED5A278001BEFD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 101626581ED5A278001BEFD7 /* Assets.xcassets */; };
+		1016265C1ED5A278001BEFD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1016265A1ED5A278001BEFD7 /* LaunchScreen.storyboard */; };
+		101626641ED5A74A001BEFD7 /* CalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626631ED5A74A001BEFD7 /* CalendarCollectionView.swift */; };
+		101626661ED5E2AF001BEFD7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626651ED5E2AF001BEFD7 /* Utilities.swift */; };
+		101626681ED5E91B001BEFD7 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626671ED5E91B001BEFD7 /* Objects.swift */; };
+		E48361697FDBBFFEAE49CFCB /* Pods_MoreThan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6613B6E5D82F6EA418C2865 /* Pods_MoreThan.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1016264E1ED5A278001BEFD7 /* MoreThan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoreThan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		101626511ED5A278001BEFD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		101626581ED5A278001BEFD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1016265B1ED5A278001BEFD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1016265D1ED5A278001BEFD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		101626631ED5A74A001BEFD7 /* CalendarCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionView.swift; sourceTree = "<group>"; };
+		101626651ED5E2AF001BEFD7 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		101626671ED5E91B001BEFD7 /* Objects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
+		5FBD07B1D1A7B48B97332C6A /* Pods-MoreThan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreThan.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoreThan/Pods-MoreThan.release.xcconfig"; sourceTree = "<group>"; };
+		A587A5B3FDD18BF4EF2A0A87 /* Pods-MoreThan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreThan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoreThan/Pods-MoreThan.debug.xcconfig"; sourceTree = "<group>"; };
+		F6613B6E5D82F6EA418C2865 /* Pods_MoreThan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoreThan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1016264B1ED5A278001BEFD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E48361697FDBBFFEAE49CFCB /* Pods_MoreThan.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		101626451ED5A278001BEFD7 = {
+			isa = PBXGroup;
+			children = (
+				101626501ED5A278001BEFD7 /* MoreThan */,
+				1016264F1ED5A278001BEFD7 /* Products */,
+				DC764993D51E633A35439F7D /* Pods */,
+				2A7E4DE0A250BD9D31051F19 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1016264F1ED5A278001BEFD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1016264E1ED5A278001BEFD7 /* MoreThan.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		101626501ED5A278001BEFD7 /* MoreThan */ = {
+			isa = PBXGroup;
+			children = (
+				101626511ED5A278001BEFD7 /* AppDelegate.swift */,
+				101626631ED5A74A001BEFD7 /* CalendarCollectionView.swift */,
+				101626581ED5A278001BEFD7 /* Assets.xcassets */,
+				1016265A1ED5A278001BEFD7 /* LaunchScreen.storyboard */,
+				1016265D1ED5A278001BEFD7 /* Info.plist */,
+				101626671ED5E91B001BEFD7 /* Objects.swift */,
+				101626651ED5E2AF001BEFD7 /* Utilities.swift */,
+			);
+			path = MoreThan;
+			sourceTree = "<group>";
+		};
+		2A7E4DE0A250BD9D31051F19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6613B6E5D82F6EA418C2865 /* Pods_MoreThan.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC764993D51E633A35439F7D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A587A5B3FDD18BF4EF2A0A87 /* Pods-MoreThan.debug.xcconfig */,
+				5FBD07B1D1A7B48B97332C6A /* Pods-MoreThan.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1016264D1ED5A278001BEFD7 /* MoreThan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 101626601ED5A278001BEFD7 /* Build configuration list for PBXNativeTarget "MoreThan" */;
+			buildPhases = (
+				FD4CC32C57D9C5900E2C004C /* [CP] Check Pods Manifest.lock */,
+				1016264A1ED5A278001BEFD7 /* Sources */,
+				1016264B1ED5A278001BEFD7 /* Frameworks */,
+				1016264C1ED5A278001BEFD7 /* Resources */,
+				7D3A7E0BA53C7189665C94C9 /* [CP] Embed Pods Frameworks */,
+				256DC31453CF48C9BA2B585F /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MoreThan;
+			productName = MoreThan;
+			productReference = 1016264E1ED5A278001BEFD7 /* MoreThan.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		101626461ED5A278001BEFD7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = KacobJeith;
+				TargetAttributes = {
+					1016264D1ED5A278001BEFD7 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = RD29BP3UFX;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 101626491ED5A278001BEFD7 /* Build configuration list for PBXProject "MoreThan" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 101626451ED5A278001BEFD7;
+			productRefGroup = 1016264F1ED5A278001BEFD7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1016264D1ED5A278001BEFD7 /* MoreThan */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1016264C1ED5A278001BEFD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1016265C1ED5A278001BEFD7 /* LaunchScreen.storyboard in Resources */,
+				101626591ED5A278001BEFD7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		256DC31453CF48C9BA2B585F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoreThan/Pods-MoreThan-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D3A7E0BA53C7189665C94C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoreThan/Pods-MoreThan-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD4CC32C57D9C5900E2C004C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1016264A1ED5A278001BEFD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				101626661ED5E2AF001BEFD7 /* Utilities.swift in Sources */,
+				101626641ED5A74A001BEFD7 /* CalendarCollectionView.swift in Sources */,
+				101626681ED5E91B001BEFD7 /* Objects.swift in Sources */,
+				101626521ED5A278001BEFD7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1016265A1ED5A278001BEFD7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1016265B1ED5A278001BEFD7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1016265E1ED5A278001BEFD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1016265F1ED5A278001BEFD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		101626611ED5A278001BEFD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A587A5B3FDD18BF4EF2A0A87 /* Pods-MoreThan.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RD29BP3UFX;
+				INFOPLIST_FILE = MoreThan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = KacobJeith.MoreThan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		101626621ED5A278001BEFD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5FBD07B1D1A7B48B97332C6A /* Pods-MoreThan.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RD29BP3UFX;
+				INFOPLIST_FILE = MoreThan/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = KacobJeith.MoreThan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		101626491ED5A278001BEFD7 /* Build configuration list for PBXProject "MoreThan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1016265E1ED5A278001BEFD7 /* Debug */,
+				1016265F1ED5A278001BEFD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		101626601ED5A278001BEFD7 /* Build configuration list for PBXNativeTarget "MoreThan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				101626611ED5A278001BEFD7 /* Debug */,
+				101626621ED5A278001BEFD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 101626461ED5A278001BEFD7 /* Project object */;
+}
