@@ -20,7 +20,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
     var images: [Int : UIImage] = [:]
     var lastSelected = IndexPath(item: 0, section: 0)
     var pressStartTime: TimeInterval = 0.0
-    var unlockDuration: CGFloat = 1.0
+    var unlockDuration: CGFloat = 1.5
     var unlockingIndexPath =  IndexPath(item: 0, section: 0)
     var unlockImage = UIImage(named: "redheart")!
     
@@ -462,7 +462,7 @@ extension CalendarCollectionView {
     
     func validateDate(indexPath: IndexPath) -> Bool {
         
-        print("Attempting to Unlock \(months[indexPath.section].month), \(indexPath.row - months[indexPath.section].frontEmpty + 1)!")
+        //print("Attempting to Unlock \(months[indexPath.section].month), \(indexPath.row - months[indexPath.section].frontEmpty + 1)!")
         
         let date = Date()
         let cal = Calendar.current
