@@ -17,6 +17,11 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
     var itemWidth = CGFloat()
     var randomColors = [UIColor]()
     var images: [Int : UIImage] = [:]
+    var lastSelected = IndexPath(item: 0, section: 0)
+    var pressStartTime: TimeInterval = 0.0
+    var unlockDuration: CGFloat = 1.0
+    var unlockingIndexPath =  IndexPath(item: 0, section: 0)
+    var unlockImage = UIImage(named: "redheart")!
     
     private let reuseIdentifier = "Cell"
     
@@ -27,8 +32,11 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         
         notificationToken = realm.addNotificationBlock { notification, realm in
             /* results available asynchronously here */
-            print("RELOADING")
+            
+            
+            self.collectionView.reloadItems(at: [self.lastSelected])
             self.reloadView()
+            
         }
         loadIcons()
         
@@ -125,6 +133,14 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
             cell.backgroundColor = randomColors[randomIntInRange(max: randomColors.count)]
             let thisImage = images[convertDateToOrderInt(month: indexPath.section, date: indexPath.row)]
             if thisImage != nil {
+                
+                let thisHeart = self.collectionView.viewWithTag(120349861234)
+                
+                if thisHeart != nil {
+                    print("found heart")
+                    thisHeart?.removeFromSuperview()
+                }
+                
                 print("Adding subview for image at \(indexPath.row)")
                 cell.addSubview(addCalendarImage(frame: cell.bounds,
                                                  image: thisImage!))
@@ -136,6 +152,13 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
                 cell.addSubview(addCalendarFill(color: UIColor.white, opacity: 0.5))
                 cell.addSubview(addCalendarDate(text: String(indexPath.row - months[indexPath.section].frontEmpty + 1),
                                                 opacity: 1.0))
+                
+                let unlock = UILongPressGestureRecognizer(target: self,
+                                                          action: #selector(handleLongPress))
+                
+                unlock.minimumPressDuration = 0.1
+                cell.tag = convertDateToOrderInt(month: indexPath.section, date: indexPath.row)
+                cell.addGestureRecognizer(unlock)
             }
             
             
@@ -153,47 +176,140 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         print("Selected \(months[indexPath.section].month), \(indexPath.row - months[indexPath.section].frontEmpty + 1)!")
         
         
+        let thisOrdering = convertDateToOrderInt(month: indexPath.section, date: indexPath.row)
+        
+        if images[thisOrdering] != nil {
+            
+            let messageView = MessageView()
+            let realm = try! Realm(configuration: config)
+            let allUnlocked = realm.objects(Message.self).filter("unlocked == %@", true).sorted(byKeyPath: "ordering", ascending: true)
+            
+            messageView.unlockedMessages = Array(allUnlocked)
+            messageView.index = allUnlocked.count - 1
+            var orderCounter = 0
+            
+            for each in allUnlocked {
+                if each.ordering == thisOrdering {
+                    
+                    messageView.index = orderCounter
+                    print("breaking")
+                    break
+                } else {
+                    orderCounter += 1
+                    print("Still searching")
+                }
+            }
+            
+            
+            navigationController?.pushViewController(messageView, animated: true)
+        }
+        
+        
+
+    }
+    
+    func handleLongPress(gesture: UILongPressGestureRecognizer) {
+        
+        let p = gesture.location(in: self.collectionView)
+        
+        if let indexPath = self.collectionView.indexPathForItem(at: p) {
+            unlockingIndexPath = indexPath
+            
+            let cell = self.collectionView.cellForItem(at: indexPath)
+            //print((cell?.tag)!)
+            
+            if cell != nil && images[(cell?.tag)!] == nil {
+                handleUnlocking(gesture: gesture)
+            }
+        } else {
+            print("couldn't find index path")
+        }
+        
+        
+    }
+    
+    func handleUnlocking(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == UIGestureRecognizerState.began {
+            pressStartTime = NSDate.timeIntervalSinceReferenceDate
+            let startFrame = CGRect(x: gesture.location(in: self.collectionView).x - 50,
+                                    y: gesture.location(in: self.collectionView).y - 50,
+                                    width: 100,
+                                    height: 100)
+            
+            displayHeart(gesture: gesture, frame: startFrame)
+            
+        } else if gesture.state == UIGestureRecognizerState.changed {
+            let duration = CGFloat(NSDate.timeIntervalSinceReferenceDate - pressStartTime)
+            
+            if duration > self.unlockDuration {
+                print("UNLOCK")
+                let thisHeart = self.collectionView.viewWithTag(120349861234)
+                
+                if thisHeart != nil {
+                    thisHeart?.removeFromSuperview()
+                }
+                let generator = UIImpactFeedbackGenerator(style: .medium)
+                generator.impactOccurred()
+                unlockThisCell()
+            }
+            
+            let newSize = 100 + 300 * duration
+            let newOffset = newSize / 2
+            let growFrame = CGRect(x: gesture.location(in: self.collectionView).x - newOffset,
+                                   y: gesture.location(in: self.collectionView).y - newOffset,
+                                   width: newSize,
+                                   height: newSize)
+            
+            displayHeart(gesture: gesture, frame: growFrame)
+            
+            
+        } else if gesture.state == UIGestureRecognizerState.ended {
+            
+            
+        }
+    }
+    
+    func unlockThisCell() {
+        let indexPath = unlockingIndexPath
+        
         let realm = try! Realm(configuration: config)
         let allLocked = realm.objects(Message.self).filter("unlocked == %@", false)
         let thisOrdering = convertDateToOrderInt(month: indexPath.section, date: indexPath.row)
         
-        if images[thisOrdering] == nil && allLocked.count > 0 {
-            
-            let randomLocked = allLocked[randomIntInRange(max: allLocked.count)]
-            
-            try! realm.write {
-                randomLocked.month = months[indexPath.section].month
-                randomLocked.date = indexPath.row - months[indexPath.section].frontEmpty + 1
-                randomLocked.section = indexPath.section
-                randomLocked.row = indexPath.row
-                randomLocked.ordering = thisOrdering
-                randomLocked.unlocked = true
-            }
-            
+        
+        print(indexPath)
+        lastSelected = indexPath
+        let randomLocked = allLocked[randomIntInRange(max: allLocked.count)]
+        
+        try! realm.write {
+            randomLocked.month = months[indexPath.section].month
+            randomLocked.date = indexPath.row - months[indexPath.section].frontEmpty + 1
+            randomLocked.section = indexPath.section
+            randomLocked.row = indexPath.row
+            randomLocked.ordering = thisOrdering
+            randomLocked.unlocked = true
+        }
+    }
+    
+    func displayHeart(gesture: UILongPressGestureRecognizer, frame: CGRect) {
+        
+        let thisHeart = self.collectionView.viewWithTag(120349861234)
+        
+        if thisHeart != nil {
+            thisHeart?.removeFromSuperview()
         }
         
+        let imageView = UIImageView(frame: frame)
+        imageView.accessibilityFrame = frame
+        imageView.alpha = 0.5
+        imageView.image = self.unlockImage
+        imageView.tag = 120349861234
         
-        let allUnlocked = realm.objects(Message.self).filter("unlocked == %@", true).sorted(byKeyPath: "ordering", ascending: true)
+        self.collectionView.addSubview(imageView)
+    }
+    
+    func unlockNextAndDisplay() {
         
-        let messageView = MessageView()
-        messageView.unlockedMessages = Array(allUnlocked)
-        messageView.index = allUnlocked.count - 1
-        var orderCounter = 0
-        
-        for each in allUnlocked {
-            if each.ordering == thisOrdering {
-                
-                messageView.index = orderCounter
-                print("breaking")
-                break
-            } else {
-                orderCounter += 1
-                print("Still searching")
-            }
-        }
-        
-        navigationController?.pushViewController(messageView, animated: true)
-
     }
     
 }

@@ -95,6 +95,9 @@ class MessageView: UIViewController, UICollectionViewDelegateFlowLayout, UIColle
         cell.subviews.forEach({ $0.removeFromSuperview() })
         cell.backgroundColor = UIColor.black
         cell.addSubview(addImageToView(index: indexPath.row))
+        let imageOverlay = UIView(frame: cell.bounds)
+        imageOverlay.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+        cell.addSubview(imageOverlay)
         cell.addSubview(addIntroToView(index: indexPath.row))
         cell.addSubview(addCaptionToView(index: indexPath.row))
         /*
@@ -143,13 +146,13 @@ extension MessageView {
     func addCaptionToView(index: Int) -> UIView {
         let caption = UIView()
         caption.frame = CGRect(x: 0,
-                               y: 7 * (self.view.bounds.height/8),
+                               y: 4 * (self.view.bounds.height/5),
                                width: self.view.bounds.width,
-                               height: self.view.bounds.height/8)
+                               height: self.view.bounds.height/5)
         let textFrame = CGRect(x: 0,
                               y: 0,
                               width: self.view.bounds.width,
-                              height: self.view.bounds.height/8)
+                              height: self.view.bounds.height/5)
         caption.backgroundColor = UIColor.clear
         caption.addSubview(addTextToView(text: unlockedMessages[index].caption,
                                          frame: textFrame))
@@ -163,7 +166,7 @@ extension MessageView {
         
         textView.text = text
         textView.textColor = UIColor.white
-        textView.font = UIFont.boldSystemFont(ofSize: 15.0)
+        textView.font = UIFont.systemFont(ofSize: 20)
         textView.textAlignment = .center
         textView.numberOfLines = 0
         textView.layer.shadowColor = UIColor.lightGray.cgColor
