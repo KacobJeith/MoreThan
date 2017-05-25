@@ -17,6 +17,7 @@ class MessageView: UIViewController, UICollectionViewDelegateFlowLayout, UIColle
     var randomColors = [UIColor]()
     var unlockedMessages = [Message]()
     var index = 0
+    var onceOnly = false
     
     private let reuseIdentifier = "Cell"
     
@@ -31,7 +32,7 @@ class MessageView: UIViewController, UICollectionViewDelegateFlowLayout, UIColle
         self.itemWidth = self.view.bounds.width
         
         //self.title = unlockedMessages[index].month
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let layout: UICollectionViewFlowLayout = SnappingCollectionViewLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = self.view.bounds.width/4
         layout.minimumLineSpacing = self.view.bounds.width/4
@@ -50,18 +51,26 @@ class MessageView: UIViewController, UICollectionViewDelegateFlowLayout, UIColle
         self.collectionView?.backgroundColor = UIColor.black
         self.view.addSubview(collectionView!)
         self.collectionView.isScrollEnabled = true
+        self.collectionView.decelerationRate = 1.25
         navigationController?.navigationBar.barTintColor = UIColor.black
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         
     }
     
+    internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if !onceOnly {
+            let indexToScrollTo = IndexPath(item: index, section: 0)
+            self.collectionView.scrollToItem(at: indexToScrollTo, at: .left, animated: false)
+            onceOnly = true
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
         navigationController?.navigationBar.barTintColor = UIColor.white
-        // needed to clear the text in the back navigation:
-        self.navigationItem.title = ""
+        self.navigationItem.title = "Calendar of Love"
     }
     
     

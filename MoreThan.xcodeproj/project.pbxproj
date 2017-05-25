@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100CF25E1ED66FD000723270 /* layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100CF25D1ED66FD000723270 /* layout.swift */; };
 		101626521ED5A278001BEFD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626511ED5A278001BEFD7 /* AppDelegate.swift */; };
 		101626591ED5A278001BEFD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 101626581ED5A278001BEFD7 /* Assets.xcassets */; };
 		1016265C1ED5A278001BEFD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1016265A1ED5A278001BEFD7 /* LaunchScreen.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		100CF25D1ED66FD000723270 /* layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = layout.swift; sourceTree = "<group>"; };
 		1016264E1ED5A278001BEFD7 /* MoreThan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoreThan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		101626511ED5A278001BEFD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		101626581ED5A278001BEFD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				1016265A1ED5A278001BEFD7 /* LaunchScreen.storyboard */,
 				1016265D1ED5A278001BEFD7 /* Info.plist */,
 				101626671ED5E91B001BEFD7 /* Objects.swift */,
+				100CF25D1ED66FD000723270 /* layout.swift */,
 				101626651ED5E2AF001BEFD7 /* Utilities.swift */,
 				101626691ED61B8F001BEFD7 /* Messages.swift */,
 			);
@@ -225,6 +228,7 @@
 				1016266A1ED61B8F001BEFD7 /* Messages.swift in Sources */,
 				1016266C1ED61EAA001BEFD7 /* MessageView.swift in Sources */,
 				101626681ED5E91B001BEFD7 /* Objects.swift in Sources */,
+				100CF25E1ED66FD000723270 /* layout.swift in Sources */,
 				101626521ED5A278001BEFD7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

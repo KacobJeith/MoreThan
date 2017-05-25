@@ -71,7 +71,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.gray]
-        //self.navigationItem.title = "Calendar of Love"
+        self.navigationItem.title = "Calendar of Love"
         loadIcons()
     }
     
@@ -146,8 +146,9 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         
         let realm = try! Realm(configuration: config)
         let allLocked = realm.objects(Message.self).filter("unlocked == %@", false)
+        let thisOrdering = convertDateToOrderInt(month: indexPath.section, date: indexPath.row)
         
-        if allLocked.count != 0 {
+        if images[thisOrdering] == nil {
             
             let randomLocked = allLocked[randomIntInRange(max: allLocked.count)]
             
@@ -156,7 +157,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
                 randomLocked.date = indexPath.row - months[indexPath.section].frontEmpty + 1
                 randomLocked.section = indexPath.section
                 randomLocked.row = indexPath.row
-                randomLocked.ordering = convertDateToOrderInt(month: indexPath.section, date: indexPath.row)
+                randomLocked.ordering = thisOrdering
                 randomLocked.unlocked = true
             }
             
@@ -168,6 +169,19 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         let messageView = MessageView()
         messageView.unlockedMessages = Array(allUnlocked)
         messageView.index = allUnlocked.count - 1
+        var orderCounter = 0
+        
+        for each in allUnlocked {
+            if each.ordering == thisOrdering {
+                
+                messageView.index = orderCounter
+                print("breaking")
+                break
+            } else {
+                orderCounter += 1
+                print("Still searching")
+            }
+        }
         
         navigationController?.pushViewController(messageView, animated: true)
 
