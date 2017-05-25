@@ -70,7 +70,7 @@ class MessageView: UIViewController, UICollectionViewDelegateFlowLayout, UIColle
         super.viewWillDisappear(true)
         
         navigationController?.navigationBar.barTintColor = UIColor.white
-        self.navigationItem.title = "Calendar of Love"
+        self.navigationItem.title = "The Official Janky Calendar of Love"
     }
     
     

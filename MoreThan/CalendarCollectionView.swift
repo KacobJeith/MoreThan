@@ -12,6 +12,7 @@ import RealmSwift
 class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     var notificationToken: NotificationToken? = nil
     
+    var appState = AppState()
     var collectionView: UICollectionView!
     var months: [Month] = []
     var itemWidth = CGFloat()
@@ -38,6 +39,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
             self.reloadView()
             
         }
+        appState = realm.object(ofType: AppState.self, forPrimaryKey: 0)!
         loadIcons()
         
         self.months = Array(realm.objects(Month.self))
@@ -47,7 +49,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
             randomColors.append(getRandomColor())
         }
         
-        self.title = "Calendar of Love"
+        self.title = "The Official Janky Calendar of Love"
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 0
@@ -65,6 +67,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         self.collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "headerView")
         self.collectionView?.backgroundColor = UIColor.white
+        collectionView.contentOffset.y = appState.contentOffsetY
         self.view.addSubview(collectionView!)
         
         
@@ -84,7 +87,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
                                            y: 0,
                                            width: self.view.frame.width,
                                            height: self.view.frame.height)
-        self.navigationItem.title = "Calendar of Love"
+        self.navigationItem.title = "The Official Janky Calendar of Love"
         loadIcons()
     }
     
@@ -180,32 +183,43 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         
         if images[thisOrdering] != nil {
             
-            let messageView = MessageView()
-            let realm = try! Realm(configuration: config)
-            let allUnlocked = realm.objects(Message.self).filter("unlocked == %@", true).sorted(byKeyPath: "ordering", ascending: true)
-            
-            messageView.unlockedMessages = Array(allUnlocked)
-            messageView.index = allUnlocked.count - 1
-            var orderCounter = 0
-            
-            for each in allUnlocked {
-                if each.ordering == thisOrdering {
-                    
-                    messageView.index = orderCounter
-                    print("breaking")
-                    break
-                } else {
-                    orderCounter += 1
-                    print("Still searching")
-                }
+            openMessageView(indexPath: indexPath)
+        }
+
+    }
+    
+    func openMessageView(indexPath: IndexPath) {
+        
+        let thisOrdering = convertDateToOrderInt(month: indexPath.section, date: indexPath.row)
+        
+        let messageView = MessageView()
+        let realm = try! Realm(configuration: config)
+        let allUnlocked = realm.objects(Message.self).filter("unlocked == %@", true).sorted(byKeyPath: "ordering", ascending: true)
+        
+        messageView.unlockedMessages = Array(allUnlocked)
+        messageView.index = allUnlocked.count - 1
+        var orderCounter = 0
+        
+        for each in allUnlocked {
+            if each.ordering == thisOrdering {
+                
+                messageView.index = orderCounter
+                print("breaking")
+                break
+            } else {
+                orderCounter += 1
+                print("Still searching")
             }
-            
-            
-            navigationController?.pushViewController(messageView, animated: true)
         }
         
         
-
+        navigationController?.pushViewController(messageView, animated: true)
+        
+        
+        
+        try! realm.write {
+            appState.contentOffsetY = collectionView.contentOffset.y
+        }
     }
     
     func handleLongPress(gesture: UILongPressGestureRecognizer) {
@@ -213,14 +227,20 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         let p = gesture.location(in: self.collectionView)
         
         if let indexPath = self.collectionView.indexPathForItem(at: p) {
-            unlockingIndexPath = indexPath
             
-            let cell = self.collectionView.cellForItem(at: indexPath)
-            //print((cell?.tag)!)
             
-            if cell != nil && images[(cell?.tag)!] == nil {
-                handleUnlocking(gesture: gesture)
+            let canUnlock = validateDate(indexPath: indexPath)
+            
+            if canUnlock {
+                
+                let cell = self.collectionView.cellForItem(at: indexPath)
+                //print((cell?.tag)!)
+                
+                if cell != nil && images[(cell?.tag)!] == nil {
+                    handleUnlocking(gesture: gesture)
+                }
             }
+            
         } else {
             print("couldn't find index path")
         }
@@ -288,7 +308,10 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
             randomLocked.row = indexPath.row
             randomLocked.ordering = thisOrdering
             randomLocked.unlocked = true
+            appState.contentOffsetY = collectionView.contentOffset.y
         }
+        
+        openMessageView(indexPath: indexPath)
     }
     
     func displayHeart(gesture: UILongPressGestureRecognizer, frame: CGRect) {
@@ -435,5 +458,34 @@ extension CalendarCollectionView {
         
         self.loadView()
         self.viewDidLoad()
+    }
+    
+    func validateDate(indexPath: IndexPath) -> Bool {
+        
+        print("Attempting to Unlock \(months[indexPath.section].month), \(indexPath.row - months[indexPath.section].frontEmpty + 1)!")
+        
+        let date = Date()
+        let cal = Calendar.current
+        let month = cal.component(.month, from: date)
+        let day = cal.component(.day, from: date)
+        
+        let selectedDate = indexPath.row - months[indexPath.section].frontEmpty + 1
+        
+        // May is free - all dates are unlocked
+        if indexPath.section == 0 {
+            
+            unlockingIndexPath = indexPath
+            return true
+        }
+        
+        if month == (indexPath.section + 5) && day == selectedDate {
+            print("SUCCESS! You may unlock")
+            unlockingIndexPath = indexPath
+            return true
+        }
+        
+        
+        unlockingIndexPath = IndexPath()
+        return false
     }
 }

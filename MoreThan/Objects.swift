@@ -40,9 +40,9 @@ class Message: Object {
     }
 }
 
-class UnlockedMessages: Object {
+class AppState: Object {
     
-    let messages = List<Message>()
+    dynamic var contentOffsetY: CGFloat = 0
     dynamic var id: Int = 0
     
     override static func primaryKey() -> String? {

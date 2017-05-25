@@ -27,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let months = realm.objects(Month.self)
         if months.count == 0 {
             print("initializing realm")
+            try! realm.write {
+                realm.add(AppState())
+            }
+            
             initializeMonths()
             MessageGenerater().generateMessages()
         }
