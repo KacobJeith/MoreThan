@@ -50,7 +50,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         self.collectionView = UICollectionView(frame: CGRect(x: 0,
                                                              y: 0,
                                                              width: self.view.frame.width,
-                                                             height: self.view.frame.height - (self.navigationController?.navigationBar.frame.height)! - itemWidth),
+                                                             height: self.view.frame.height),
                                                collectionViewLayout: layout)
         self.collectionView?.dataSource = self
         self.collectionView?.delegate = self
@@ -71,6 +71,11 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         
         navigationController?.navigationBar.barTintColor = UIColor.white
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.gray]
+        
+        self.collectionView.frame = CGRect(x: 0,
+                                           y: 0,
+                                           width: self.view.frame.width,
+                                           height: self.view.frame.height)
         self.navigationItem.title = "Calendar of Love"
         loadIcons()
     }
@@ -148,7 +153,7 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
         let allLocked = realm.objects(Message.self).filter("unlocked == %@", false)
         let thisOrdering = convertDateToOrderInt(month: indexPath.section, date: indexPath.row)
         
-        if images[thisOrdering] == nil {
+        if images[thisOrdering] == nil && allLocked.count > 0 {
             
             let randomLocked = allLocked[randomIntInRange(max: allLocked.count)]
             
@@ -269,9 +274,17 @@ extension CalendarCollectionView {
                               width: imWidth * aspectRatio,
                               height: imHeight)
         }
+        let cgimage = image.cgImage
+        var cropped = image
         
-        let imageRef:CGImage = image.cgImage!.cropping(to: cropRect)!
-        let cropped:UIImage = UIImage(cgImage:imageRef)
+        if cgimage != nil {
+            let croppingto = cgimage!.cropping(to: cropRect)
+            
+            if croppingto != nil {
+                
+                cropped = UIImage(cgImage: croppingto!)
+            }
+        }
         
         return cropped
         
