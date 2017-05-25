@@ -128,13 +128,17 @@ class CalendarCollectionView: UIViewController, UICollectionViewDelegateFlowLayo
                 print("Adding subview for image at \(indexPath.row)")
                 cell.addSubview(addCalendarImage(frame: cell.bounds,
                                                  image: thisImage!))
-                cell.addSubview(addCalendarFill(color: UIColor.black, opacity: 0.05))
+                cell.addSubview(addCalendarFill(color: UIColor.black, opacity: 0.01))
+                cell.addSubview(addCalendarDate(text: String(indexPath.row - months[indexPath.section].frontEmpty + 1),
+                                                opacity: 0.1))
             } else {
                 
                 cell.addSubview(addCalendarFill(color: UIColor.white, opacity: 0.5))
+                cell.addSubview(addCalendarDate(text: String(indexPath.row - months[indexPath.section].frontEmpty + 1),
+                                                opacity: 1.0))
             }
             
-            cell.addSubview(addCalendarDate(text: String(indexPath.row - months[indexPath.section].frontEmpty + 1)))
+            
             
         } else {
             cell.backgroundColor = UIColor.white
@@ -290,7 +294,7 @@ extension CalendarCollectionView {
         
     }
     
-    func addCalendarDate(text: String) -> UILabel {
+    func addCalendarDate(text: String, opacity: CGFloat) -> UILabel {
         let date = UILabel()
         date.frame = CGRect(x: 0,
                             y: 0,
