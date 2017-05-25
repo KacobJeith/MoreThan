@@ -36,7 +36,7 @@ class Message: Object {
     dynamic var image: String = ""
     
     override static func primaryKey() -> String? {
-        return "id"
+        return "image"
     }
 }
 
