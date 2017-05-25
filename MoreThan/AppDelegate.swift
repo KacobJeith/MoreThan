@@ -20,9 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let realm = try! Realm(configuration: config)
         
+        try! realm.write {
+            realm.deleteAll()
+        }
+        
         let months = realm.objects(Month.self)
         if months.count == 0 {
+            print("initializing realm")
             initializeMonths()
+            MessageGenerater().generateMessages()
         }
         
         window = UIWindow(frame: UIScreen.main.bounds)

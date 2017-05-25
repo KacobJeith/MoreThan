@@ -22,11 +22,28 @@ class Month: Object {
     
 }
 
-class Date: Object {
+class Message: Object {
     
     dynamic var id: Int = 0
-    dynamic var message: String = ""
+    dynamic var month: String = ""
+    dynamic var date: Int = 0
+    dynamic var ordering: Int = 0
+    dynamic var section: Int = 0
+    dynamic var row: Int = 0
+    dynamic var unlocked: Bool = false
+    dynamic var intro: String = ""
+    dynamic var caption: String = ""
     dynamic var image: String = ""
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+}
+
+class UnlockedMessages: Object {
+    
+    let messages = List<Message>()
+    dynamic var id: Int = 0
     
     override static func primaryKey() -> String? {
         return "id"

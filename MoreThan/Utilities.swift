@@ -18,6 +18,14 @@ func getRandomColor() -> UIColor{
     return UIColor(red:red, green: green, blue: blue, alpha: 1.0)
 }
 
+func randomIntInRange(max: Int) -> Int {
+    return Int(arc4random_uniform(UInt32(max)))
+}
+
+func convertDateToOrderInt(month: Int, date: Int) -> Int {
+    return (month << 8) + (date)
+}
+
 func initializeMonths() {
     
     let realm = try! Realm(configuration: config)
@@ -52,3 +60,5 @@ func initializeMonths() {
         realm.add(August)
     }
 }
+
+

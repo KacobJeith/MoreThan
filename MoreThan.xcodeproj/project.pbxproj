@@ -13,6 +13,8 @@
 		101626641ED5A74A001BEFD7 /* CalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626631ED5A74A001BEFD7 /* CalendarCollectionView.swift */; };
 		101626661ED5E2AF001BEFD7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626651ED5E2AF001BEFD7 /* Utilities.swift */; };
 		101626681ED5E91B001BEFD7 /* Objects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626671ED5E91B001BEFD7 /* Objects.swift */; };
+		1016266A1ED61B8F001BEFD7 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101626691ED61B8F001BEFD7 /* Messages.swift */; };
+		1016266C1ED61EAA001BEFD7 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1016266B1ED61EAA001BEFD7 /* MessageView.swift */; };
 		E48361697FDBBFFEAE49CFCB /* Pods_MoreThan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6613B6E5D82F6EA418C2865 /* Pods_MoreThan.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		101626631ED5A74A001BEFD7 /* CalendarCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCollectionView.swift; sourceTree = "<group>"; };
 		101626651ED5E2AF001BEFD7 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		101626671ED5E91B001BEFD7 /* Objects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Objects.swift; sourceTree = "<group>"; };
+		101626691ED61B8F001BEFD7 /* Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		1016266B1ED61EAA001BEFD7 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		5FBD07B1D1A7B48B97332C6A /* Pods-MoreThan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreThan.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoreThan/Pods-MoreThan.release.xcconfig"; sourceTree = "<group>"; };
 		A587A5B3FDD18BF4EF2A0A87 /* Pods-MoreThan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoreThan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoreThan/Pods-MoreThan.debug.xcconfig"; sourceTree = "<group>"; };
 		F6613B6E5D82F6EA418C2865 /* Pods_MoreThan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoreThan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,11 +69,13 @@
 			children = (
 				101626511ED5A278001BEFD7 /* AppDelegate.swift */,
 				101626631ED5A74A001BEFD7 /* CalendarCollectionView.swift */,
+				1016266B1ED61EAA001BEFD7 /* MessageView.swift */,
 				101626581ED5A278001BEFD7 /* Assets.xcassets */,
 				1016265A1ED5A278001BEFD7 /* LaunchScreen.storyboard */,
 				1016265D1ED5A278001BEFD7 /* Info.plist */,
 				101626671ED5E91B001BEFD7 /* Objects.swift */,
 				101626651ED5E2AF001BEFD7 /* Utilities.swift */,
+				101626691ED61B8F001BEFD7 /* Messages.swift */,
 			);
 			path = MoreThan;
 			sourceTree = "<group>";
@@ -216,6 +222,8 @@
 			files = (
 				101626661ED5E2AF001BEFD7 /* Utilities.swift in Sources */,
 				101626641ED5A74A001BEFD7 /* CalendarCollectionView.swift in Sources */,
+				1016266A1ED61B8F001BEFD7 /* Messages.swift in Sources */,
+				1016266C1ED61EAA001BEFD7 /* MessageView.swift in Sources */,
 				101626681ED5E91B001BEFD7 /* Objects.swift in Sources */,
 				101626521ED5A278001BEFD7 /* AppDelegate.swift in Sources */,
 			);
