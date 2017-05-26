@@ -50,7 +50,7 @@ func initializeMonths() {
     let August = Month()
     August.month = "August"
     August.order = 3
-    August.totalDays = 31
+    August.totalDays = 13
     August.frontEmpty = 2
     
     try! realm.write {

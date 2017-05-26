@@ -620,6 +620,57 @@ class MessageGenerater {
         counter += 1
         all.append(next)
         
+        
+        next = assembleMessage(caption: "...all the hunts in all the wilds. It's a dog eat dog world out there - thank goodness we have eachother!",
+                               image: "dogs",
+                               id: counter)
+        counter += 1
+        all.append(next)
+        
+        
+        next = assembleMessage(caption: "...the weight of all the elephant families across all the Earth! Look at those lil babies frolicking d'awwww",
+                               image: "elephants2",
+                               id: counter)
+        counter += 1
+        all.append(next)
+        
+        
+        next = assembleMessage(caption: "...all the flights I had to take for Nanotronics. I'm happy those hours are behind us!",
+                               image: "flights",
+                               id: counter)
+        counter += 1
+        all.append(next)
+        
+        
+        next = assembleMessage(caption: "...all the spots on all the leopards on all the continents! I hope you are cat-napping as hard as this guy right now!",
+                               image: "leopard",
+                               id: counter)
+        counter += 1
+        all.append(next)
+        
+        
+        next = assembleMessage(caption: "...all the times you've blown your nose while at Sardes, plus all the times in the middle of the night <3. It doesn't bother me one bit - It's a genuine happy reminder that I get to sleep next to you! Blow away, love <3",
+                               image: "nose",
+                               id: counter)
+        counter += 1
+        all.append(next)
+        
+        
+        next = assembleMessage(caption: "...all the Santa justice in Canada! I understand there are entire cities of Santas in Canada",
+                               image: "santas",
+                               id: counter)
+        counter += 1
+        all.append(next)
+        
+        
+        next = assembleMessage(caption: "...all the Me Undies adds I've seen on all the webpages on the internet. Click once, and google swears to God you'll never forget about MeUndies for another day in your life.",
+                               image: "undies",
+                               id: counter)
+        counter += 1
+        all.append(next)
+        
+        
+        
         let realm = try! Realm(configuration: config)
         
         try! realm.write {
