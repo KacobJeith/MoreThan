@@ -166,7 +166,7 @@ extension MessageView {
         
         textView.text = text
         textView.textColor = UIColor.white
-        textView.font = UIFont.systemFont(ofSize: 20)
+        textView.font = UIFont.systemFont(ofSize: 16)
         textView.textAlignment = .center
         textView.numberOfLines = 0
         textView.layer.shadowColor = UIColor.lightGray.cgColor

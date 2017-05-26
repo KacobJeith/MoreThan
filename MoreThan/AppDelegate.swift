@@ -19,10 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let realm = try! Realm(configuration: config)
-        
+        /*
         try! realm.write {
             realm.deleteAll()
-        }
+        }*/
         
         let months = realm.objects(Month.self)
         if months.count == 0 {
